@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Ficheros de entrada para las tareas</title>
+</head>
+<body>
+<h2>Descripción de los ficheros de entrada</h2>
+<p>En este y en los siguientes ejercicios utilizaremos dos ficheros de entrada que han sido descargados del National Bureau of Economic Research (NBER) de EEUU (<a href="http://www.nber.org/patents/">http://www.nber.org/patents/</a>). En concreto, usaremos los ficheros cite75_99.txt y apat63_99.txt. Una descripción detallada de estos ficheros puede encontrarse en:</p>
+<p><cite>Hall, B. H., A. B. Jaffe, and M. Trajtenberg (2001). "The NBER Patent Citation Data File: Lessons, Insights and Methodological Tools." NBER Working Paper 8498.<br></cite></p>
+<h4>Fichero cite75_99.txt</h4>
+<p>Este fichero contiene&nbsp;citas de patentes emitidas entre 1975 y 1990 en los EEUU. Es un fichero CSV (<em>comma-separated values</em>) con más&nbsp;de 16,5 millones de filas, y las primeras líneas son como sigue:</p>
+<pre class="prettyprint linenums">"CITING","CITED"
+3858241,956203
+3858241,1324234
+3858241,3398406
+3858241,3557384
+3858241,3634889
+3858242,1515701
+3858242,3319261
+3858242,3668705
+.........</pre>
+
+<p>La primera línea contiene una cabecera con la descripción de las columnas. Cada una de las otras líneas indica una cita que la patente con el número de la primera columna ha hecho a la patente con el número en la segunda. Por ejemplo, la segunda fila indica que la patente nº 3858241 ("citing" o <em>citante</em>) hace una cita a la patente nº 956203 ("cited" o citada). El fichero está ordenado por las patentes citantes. Así podemos ver que la patente nº 3858241 cita a otras 5 patentes.</p>
+<p>Este fichero permite extraer conclusiones sobre las patentes que a primera vista están ocultas. Por ejemplo, en el siguiente gráfico<sup><a href="#fn1" id="ref1"  rel="nofollow">1</a></sup> se muestra una vista parcial de un grafo de citaciones entre patentes:</p>
+<figure><img src="https://udemy-images.s3.amazonaws.com:443/redactor/raw/2017-07-10_16-55-34-cffc86d6343d9256d3607eb865c7fc35.png" data-s3="https://udemy-images.s3.amazonaws.com:443/redactor/raw/2017-07-10_16-55-34-cffc86d6343d9256d3607eb865c7fc35.png"></figure>
+<p>En este grafo, los vértices son los números de patente y las aristas dirigidas indican la cita (la arista apunta de la patente <em>citante</em> a la citada). Se puede observar que algunas patentes son citadas múltiples veces mientras que otras no tienen ninguna cita<sup><a href="#fn2" id="ref2"  rel="nofollow">2</a></sup>. Podemos observar hechos curiosos, como que aunque las patentes 5936972 y 6009552 citan a un conjunto similar de patentes (4354269, 4486882, 5598422), no se citan una a la otra.</p>
+<h4>Fichero apat63_99.txt</h4>
+<p>Este fichero contiene una descripción de las patentes. Es, de nuevo, un fichero CSV e incluye, entre otros campos, el número de patente, el año de solicitud ("APPYEAR"), el año de concesión ("GYEAR"), el país del primer inventor ("COUNTRY"), el número de reivindicaciones ("CLAIMS") y otros metadatos acerca de las patentes. Tiene más de 2,9 millones de filas, y las primeras de estas son:</p>
+<pre class="prettyprint linenums">"PATENT","GYEAR","GDATE","APPYEAR","COUNTRY","POSTATE","ASSIGNEE","ASSCODE","CLAIMS","NCLASS","CAT","SUBCAT","CMADE","CRECEIVE","RATIOCIT","GENERAL","ORIGINAL","FWDAPLAG","BCKGTLAG","SELFCTUB","SELFCTLB","SECDUPBD","SECDLWBD"
+3070801,1963,1096,,"BE","",,1,,269,6,69,,1,,0,,,,,,,
+3070802,1963,1096,,"US","TX",,1,,2,6,63,,0,,,,,,,,,
+3070803,1963,1096,,"US","IL",,1,,2,6,63,,9,,0.3704,,,,,,,
+3070804,1963,1096,,"US","OH",,1,,2,6,63,,3,,0.6667,,,,,,,
+3070805,1963,1096,,"US","CA",,1,,2,6,63,,1,,0,,,,,,,
+3070806,1963,1096,,"US","PA",,1,,2,6,63,,0,,,,,,,,,
+3070807,1963,1096,,"US","OH",,1,,623,3,39,,3,,0.4444,,,,,,,
+3070808,1963,1096,,"US","IA",,1,,623,3,39,,4,,0.375,,,,,,,
+...................</pre>
+
+<p>Al igual que en muchos datasets reales, algunos de los valores de este fichero están vacíos.</p>
+<hr>
+<p><sup id="fn1">1. Gráfico extraído de: Chuck Lam, <em>Hadoop in action</em>, Manning Publications Co., 2011.<a href="#ref1" title="Jump back to footnote 1 in the text."  rel="nofollow">↩</a></sup></p>
+<p><sup id="fn2">2. Al igual que con otros tipos de datos, debemos de tener cuidado a la hora de sacar conclusiones cuando trabajamos con un conjunto limitado de información. Que una patente no cite a ninguna otra podría deberse a que es una patente antigua, para la que no tenemos información. Y las patentes más actuales tendrán pocas citas, ya que solo pueden ser citadas por otras patentes más nuevas. Este tipo de problemas es común en el análisis de datos.<a href="#ref2" title="Jump back to footnote 2 in the text."  rel="nofollow">↩</a></sup></p>
+</body>
+
+
